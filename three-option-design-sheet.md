@@ -1,5 +1,6 @@
 # Three-Option Design Sheet — Nhóm AAA, Case A (AI Tutor: Diagnostic Refresher)
 
+> **Người nộp:** Đặng Văn Thái Anh (2A202602407) · Nhóm AAA gồm Đặng Văn Thái Anh · Đàm Quang Trung · Nguyễn Thị Bảo Trang
 > **Bản nộp chính của bài Day 18.** Dùng scenario **RAG / Hybrid Retrieval (RRF)** — khớp với prototype đã build tại `prototype/`.
 > Bản tài liệu chung của nhóm nằm ở `NHOM/Chang_1_3.md` và `NHOM/Day18-chot-chung.md`. Bản `Day18-chot-chung.md` dựng trên scenario **Excel / PivotTable** — giữ làm tài liệu nhóm, **không** đưa vào bài nộp. Xem [`README.md`](README.md) §2.1.
 > **Quy ước đánh số option trong bài nộp:** A = Bản đồ tự kiểm tra · B = Đối thoại đồng chẩn đoán · C = Agent theo dõi, rồi mở hội thoại. Dùng đúng quy ước này ở **mọi** tệp trong repo.

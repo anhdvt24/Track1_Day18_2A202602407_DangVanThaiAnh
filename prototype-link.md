@@ -1,6 +1,6 @@
 # Prototype — Link và cách mở
 
-> **Prototype của nhóm AAA, Case A — AI Tutor: Diagnostic Refresher.**
+> **Người nộp:** Đặng Văn Thái Anh (2A202602407) · Nhóm AAA · Case A — AI Tutor: Diagnostic Refresher.
 > Mỗi option là **một critical interaction khác nhau**, trên **cùng một context chung**.
 
 ---
@@ -36,15 +36,17 @@ Rồi mở `http://localhost:8000/index.html?o=A` (tương ứng `?o=B`, `?o=C`)
 
 ## 2. Trạng thái từng option
 
-| Option | Người build | File | Link | Trạng thái |
+| Option | Người build (phân công nhóm) | Người dựng file trong repo này | File | Trạng thái |
 |---|---|---|---|:---:|
-| **A** — Bản đồ tự kiểm tra | Đàm Quang Trung | `prototype/options/A/self-check.js` | `index.html?o=A` | ✅ **sẵn sàng** |
-| **B** — Đối thoại đồng chẩn đoán | Nguyễn Thị Bảo Trang | `prototype/options/B/chat-diagnose.js` | `index.html?o=B` | ✅ **sẵn sàng** |
-| **C** — Agent theo dõi | **Đặng Văn Thái Anh** | `prototype/options/C/agent-nudge.js` | `index.html?o=C` | ✅ **sẵn sàng** |
+| **A** — Bản đồ tự kiểm tra | Đàm Quang Trung | Đặng Văn Thái Anh | `prototype/options/A/self-check.js` | ✅ **sẵn sàng** |
+| **B** — Đối thoại đồng chẩn đoán | Nguyễn Thị Bảo Trang | Đặng Văn Thái Anh | `prototype/options/B/chat-diagnose.js` | ✅ **sẵn sàng** |
+| **C** — Agent theo dõi | **Đặng Văn Thái Anh** | Đặng Văn Thái Anh | `prototype/options/C/agent-nudge.js` | ✅ **sẵn sàng** |
 
 > ✅ **Cả ba option đều đã build và tự kiểm** (61/61 phép kiểm pass bằng trình duyệt thật — xem `README.md` §5.2). Ba dòng `?o=A|B|C` chạy được ngay bằng file local.
 >
 > ✅ **Đã deploy, có link công khai** — xem bảng §4. Cổng 4 đã đóng.
+>
+> **Cột "Người build" và cột "Người dựng file" khác nhau vì sao:** phân công chính của nhóm là mỗi người dựng một option. Nhưng để đóng Cổng 4 trước khi đưa người thật vào test, tôi (Thái Anh) đã dựng lại **cả ba file option** trong repo này. Đây là phần **rà soát trước khi test** — đúng vai trò *"mỗi thành viên bấm thử chéo bài của nhau"* ở Chặng 4 — **không** thay đổi phân công chính. Chi tiết ở [`README.md`](README.md) §4.1b.
 
 ## 2.1 Cấu trúc thư mục
 
@@ -90,9 +92,9 @@ prototype/
 
 | Mục | Link |
 |---|---|
-| **Trang prototype** (mở được cả ba) | https://anhdvt24.github.io/Track1_Day18_2A202602407_DangVanThaiAnh/prototype/index.html |
-| **Option A** — Bản đồ tự kiểm tra | https://anhdvt24.github.io/Track1_Day18_2A202602407_DangVanThaiAnh/prototype/index.html?o=A |
-| **Option B** — Đối thoại đồng chẩn đoán | https://anhdvt24.github.io/Track1_Day18_2A202602407_DangVanThaiAnh/prototype/index.html?o=B |
+| **Trang prototype** (mở được cả ba) |
+| **Option A** — Bản đồ tự kiểm tra |
+| **Option B** — Đối thoại đồng chẩn đoán 
 | **Option C** — Agent theo dõi | https://anhdvt24.github.io/Track1_Day18_2A202602407_DangVanThaiAnh/prototype/index.html?o=C |
 
 > ✅ **Đã deploy GitHub Pages, public, quyền xem công khai** — giảng viên và trợ giảng mở được bằng trình duyệt, **không cần cài gì**. Ba option dùng **chung một trang**, phân biệt bằng tham số `?o=A|B|C` → không phải deploy ba bản riêng.
