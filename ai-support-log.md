@@ -50,6 +50,7 @@
 | 11 | **Bỏ qua thứ tự thực thi DOM** — đề xuất gắn toàn bộ logic vào `DOMContentLoaded` mà không kiểm tra file đó được nhúng bằng DOM injection | 🔴 Nặng | Prototype **trống hoàn toàn**, không mở được. Xem [`group-feedback-synthesis.md`](group-feedback-synthesis.md) §0b mục 1 |
 | 12 | **Câu mở nói về HIỆN TẠI** (*"vẫn đang ở slide 12"*) trong khi DOM render một lần và không cập nhật | 🔴 Nặng | Người học đi khác là câu đó thành **sai thật** → họ không kiểm chứng được → đúng cái C1 cấm. Xem §0b mục 4 |
 | 13 | **Mô phỏng bằng script, tự kết luận từ hành vi mình tự tạo** | 🟡 Trung bình | Lần đầu script bấm `nextSlide` 2 lần rồi kết luận *"AI nói sai"* — hoá ra **lỗi của script**, không phải lỗi sản phẩm. Phải tách lớp *"đo sai"* khỏi *"sản phẩm sai"* trước khi báo cáo |
+| 14 | **Viết logic đúng rồi bỏ không gọi tới** — `self-check.js` có sẵn hàm `renderConclude()` nhưng không nối vào UI, và Decision Table hứa AI *"giải thích một bước khi được gọi"* trong khi A **không có nút** để gọi | 🔴 Nặng | Đây không phải lỗi kỹ thuật mà là lỗi **Cổng 3**: A không cho người học tự viết kết luận, và tài liệu hứa một việc mà prototype không làm. Thêm nút cho A chỉ để *"cho giống B"* thì phá luật 2 — phải sửa vì **Decision Table đã hứa**, không phải vì cho giống |
 
 ---
 
@@ -68,7 +69,9 @@
 | **Phần feedback** | **Để trống có khung** thay vì điền sẵn | Bài nộp chỉ nhận **observation thật**. AI tạo sẵn observation là bịa evidence |
 | **Cách trình bày C** | Nói thẳng C **không test được** phần quan trọng nhất của nó, và nó dựa trên **một giả định chưa có chứng cứ** | C hấp dẫn hơn khi sai. Giấu phần này là để C thắng vì lập luận |
 | **Tài liệu nhóm** | Thêm mục **giới hạn công khai** ở nói trước những gì prototype không đo được | Reviewer cần biết cái gì **không** có bằng chứng, không chỉ cái gì có |
-| **Prototype chưa build** | Ghi rõ A và B **chưa có** thay vì để liên kết chết | Link tới option không chạy là thông tin sai |
+| **Prototype chưa build** | Ban đầu ghi rõ A và B **chưa có** thay vì để liên kết chết — vì link tới option không chạy là thông tin sai. Sau khi tôi dựng xong A và B thì **cập nhật lại cả hai chiều**: bỏ cảnh báo *"chưa build"*, đồng thời **không** bỏ cảnh báo *"chưa có link công khai"* | Chi tiết build đã đúng không có nghĩa Cổng 4 đã đóng. Hai loại "chưa" này khác nhau và phải báo riêng |
+| **Vế Situation của Hypothesis** | Đổi từ *"kết quả trên dữ liệu thật khác với hướng dẫn"* (câu chữ scenario Excel) sang *"bài học khẳng định một điều nhưng không đưa ví dụ"*, **và ghi lại lý do** ngay cạnh chỗ sửa | Không giấu việc sửa. Giữ vế cũ thì ba option không giải đúng bài toán → vi phạm luật 1, không phải lỗi chính tả |
+| **Ô H6 (phản ứng với việc bị quan sát)** ở A và B | Ghi *"không có cơ chế quan sát trong option này"* thay vì để trống hoặc điền 0 | Ô trống đó là **giới hạn của option**, không phải người dùng không quan tâm. Để trống dễ bị đọc thành "C thắng về quyền riêng tư" — mà không có dữ liệu nào cho kết luận đó |
 | **Thứ tự DOM** | Kiểm tra `document.readyState` trước khi gắn listener, thay vì chỉ `addEventListener('DOMContentLoaded')` | File option được nhúng bằng DOM injection nên chạy **sau** sự kiện đó. Loại lỗi **chỉ lộ ra khi mở thật** |
 | **Cửa sổ 5 phút** | Lọc mẫu theo `Date.now() - T.windowMs` thay vì đếm toàn bộ phiên | Câu mở nói gì thì phải **kiểm tra đúng cái đó**. Nói *"5 phút"* mà không lọc thì AI đang bịa |
 | **Biến chết** | Bỏ `winStart` và `T.copy` thay vì để lại trong code | Biến được gán nhưng không đọc là dấu hiệu **phần đó chưa nghĩ xong** → gây hiểu nhầm cho người đọc tiếp theo |

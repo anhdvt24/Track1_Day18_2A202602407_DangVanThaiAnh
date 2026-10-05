@@ -106,7 +106,8 @@
     // Giữ lại để mở lại bản đồ KHÔNG MẤT phần đã đọc (Recovery, §4.3).
     // Giá trị: 'ran' (đã chạy) | 'match' (khớp) | 'nomatch' (không khớp)
     marks: {},
-    concluded: false
+    concluded: false,
+    explained: false   // A1: đã dùng lần giải thích duy nhất trong phiên chưa
   };
 
   function mark(bid, ci, v) { S.marks[bid + ':' + ci] = v; }
@@ -208,8 +209,21 @@
       '  <div class="hr"></div>' +
       '  <div class="small muted">Đã chạy ' + (c.done - c.untried) + '/' + BRANCHES.length + ' nhánh · ' +
              'loại ' + c.out + ' · còn mở ' + c.open + '</div>' +
+      /* A2/R1 — người học PHẢI có chỗ kết luận bằng lời mình, giống B.
+         Không có lối này thì A thua B một cách không do cơ chế: B được chấm
+         "kết luận bằng lời mình" còn A thì không → phá luật 2. Nút chỉ hiện
+         sau khi đã chạy ít nhất một nhánh, vì trước đó người học chưa có gì
+         để kết luận. */
+      (c.done - c.untried > 0
+        ? '  <div class="btnrow" style="margin-top:12px">' +
+          '    <button class="btn primary" id="conclBtn" type="button">Đến lượt bạn kết luận</button>' +
+          '  </div>'
+        : '') +
       '</div>'
     ));
+
+    var conclBtn = el.slot.querySelector('#conclBtn');
+    if (conclBtn) conclBtn.addEventListener('click', renderConclude);
 
     el.slot.querySelectorAll('[data-act]').forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -251,11 +265,21 @@
       '  <div class="small muted" style="margin:0 0 10px">' +
       '    Tôi không biết bạn sẽ thấy gì. Bạn tự đối chiếu rồi đánh dấu.</div>' +
 
+      /* A1 — AI DON'T ACT: chỉ giải thích MỘT bước, và chỉ khi được gọi.
+         Đây là affordance mà Decision Table hứa. Nội dung phải nói về *cách
+         tự kiểm*, không nói nguyên nhân vấn đề — nếu nói nguyên nhân thì A
+         biến thành B và phá luật 2. */
+      '  <div class="btnrow" style="margin-bottom:10px">' +
+      (S.explained ? ''
+        : '    <button class="btn ghost sm" id="expBtn" type="button">Giải thích bước này giúp tôi</button>') +
+      '  </div>' +
+      '  <div id="expBox"></div>' +
+
       '  <div class="btnrow" style="margin-bottom:10px">' +
       '    <button class="btn primary" id="ranBtn" type="button">Tôi đã chạy xong</button>' +
       '    <button class="btn ghost sm" id="mapBtn0" type="button">Về bản đồ</button>' +
       '  </div>' +
-      '  <div id="resultBox"></div>' +
+      '<div id="resultBox"></div>' +
       '</div>'
     ));
 
@@ -263,6 +287,25 @@
        không làm mất phần đã đọc, vì kết quả nằm trong S.marks chứ không
        nằm trong DOM. */
     el.slot.querySelector('#mapBtn0').addEventListener('click', function () { renderMap(); });
+
+    /* Chỉ giải thích MỘT lần cho cả phiên: A Don't Act nghĩa là AI không
+       luôn sẵn sàng để dẫn. Người học gọi được khi cần, không thì không. */
+    var expBtn = el.slot.querySelector('#expBtn');
+    if (expBtn) {
+      expBtn.addEventListener('click', function () {
+        S.explained = true;
+        el.slot.querySelector('#expBox').innerHTML =
+          '<div class="card" style="background:#f7f9fc;padding:13px;margin:0 0 10px">' +
+          '  <div class="small muted" style="margin-bottom:4px">Cách tự đối chiếu</div>' +
+          '  <div class="small">Mở <b>' + esc(c.where) + '</b>, đọc đúng chỗ đó, rồi tự so ' +
+          '    với dòng "Kết quả mong đợi" ở trên. Tôi không biết bạn sẽ thấy gì — ' +
+          '    và tôi không nói trước để bạn còn tự kiểm được.</div>' +
+          '  <div class="small muted" style="margin-top:8px">Đây là lần giải thích duy nhất ' +
+          '    trong phiên này.</div>' +
+          '</div>';
+        expBtn.parentNode.removeChild(expBtn);
+      });
+    }
 
     el.slot.querySelector('#ranBtn').addEventListener('click', function () {
       mark(S.cur, S.step, 'ran');

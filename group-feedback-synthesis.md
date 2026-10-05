@@ -5,15 +5,17 @@
 > Điền **sau khi đủ ba Feedback Notes** từ ba tester ngoài nhóm. Mỗi tester dùng cả A/B/C với cùng task (xem phần "Chuẩn bị test" trong [`prototype-feedback-note.md`](prototype-feedback-note.md)).
 > Gate 5 đạt khi: có 3 note · tách pattern / Next Change / Still Unproven · không nói quá evidence.
 > **Phần của tôi trong file này:** ô T3 ở §1 và §2, cùng phần tôi đóng góp ở §3–§5 — xem [`prototype-feedback-note.md`](prototype-feedback-note.md) §4.1–§4.4.
+> **Bộ test dùng chung (Context Question · Outcome Task · 7 hành vi H1–H7 · 7 câu hỏi cấm Q1–Q7):** định nghĩa một lần ở [`prototype-feedback-note.md`](prototype-feedback-note.md) §0.1–§0.5. Cả ba thành viên đọc từ đây — nếu ba phiên dùng ba câu dẫn khác nhau thì khi so sánh không tách được khác biệt do **option** hay do **cách dẫn**.
+> **Bảng ở §2 dùng đúng mã H1–H7** để ba thành viên điền vào cùng một lưới ô.
 
 ## 0. Pilot trước test — Option B (bản Excel / PivotTable) — KHÔNG tính là Feedback Note
 
 > ⚠️ **Bản cảnh báo quan trọng:** mục này thuộc **bản prototype Excel / PivotTable** (tài liệu `NHOM/Day18-chot-chung.md`), **không** thuộc bản nộp chính RAG / Hybrid Retrieval. Giữ lại như tài liệu nhóm vì nó ghi lại một bài học thiết kế có giá trị.
-> **Không dùng làm evidence cho Gate 5 của bài nộp**, và không trích các commit `467db12` / `1ecec9c` vào bài nộp.
+> **Không dùng làm evidence cho Gate 5 của bài nộp**, và không nhắc mã commit ở đây vào bài nộp — mã commit của bản Excel không có ý nghĩa với bài nộp RAG, trích vào chỉ gây nhiễu.
 > **Lý do phải tách bạch:** để cả hai scenario trong bài nộp sẽ vi phạm Cổng 1 — *"tự ý đổi đề bài"*.
 
 > **Người chạy:** AI (Claude) đóng vai người mở prototype lần đầu, theo đúng outcome task. **Không phải tester ngoài nhóm**, đã biết trước nguyên nhân thật → chỉ dùng để tìm chỗ interaction gãy trước khi test, **không** dùng làm evidence cho Gate 5.
-> **Ngày:** 05/10/2026 · **Bản test:** commit `467db12` · **Bản sau khi sửa:** commit `1ecec9c`
+> **Ngày:** 05/10/2026 · **Bản test:** prototype Excel, bản đầu · **Bản sau khi sửa:** bản sau khi sửa 6 lỗi tương tác
 
 | # | Mức | Ở đâu | Điều quan sát được | Đã sửa |
 |---|---|---|---|---|
@@ -117,7 +119,6 @@
 | 3 | ⚠️ **C không có đường để người học tự hỏi giúp.** Họ muốn hỏi thì phải chờ AI phát hiện trước | **FACT** |
 | 4 | ⚠️ **C chỉ chạm Lớp 1 khi Lớp 1 đã bắt đầu tự lặp** — mâu thuẫn với luận điểm thiết kế | **FACT** + diễn giải |
 | 5 | ⚠️ **AI không có nút bấm được cho slide 13** — chỉ có câu chữ, người học phải tự tìm | **FACT** |
-| 6 | Ba câu hỏi trung tâm của C **vẫn chưa có câu trả lời** | **UNKN** |
 
 > **Đề xuất Next Change (chỉ là đề xuất, chưa phải kết luận):** nếu muốn C chạm được Lớp 1 như thiết kế nói, cần một **đường tự mở không phụ thuộc mẫu lặp** — ví dụ một nút *"Tôi đang kẹt"* luôn hiện. Nhưng làm vậy là **C bắt đầu giống A và B** → phá luật so sánh. Cần đủ ba note thật mới quyết.
 
@@ -154,14 +155,17 @@
 
 | Quan sát | A — Bản đồ tự kiểm tra | B — Đối thoại đồng chẩn đoán | C — Agent theo dõi, rồi mở hội thoại |
 |---|---|---|---|
-| First action | ⏳ | ⏳ | 🤖 Không phải chọn gì → **không có hesitation** *(FACT, mô phỏng)* |
-| Hesitation | ⏳ | ⏳ | 🤖 **0** *(FACT, mô phỏng)* |
-| Evidence read / ignored | ⏳ | ⏳ | 🤖 Cả 3 hồ sơ **không mở nhật ký** → không kiểm chứng lời AI *(FACT)* |
-| Correction / recovery | ⏳ | ⏳ | 🤖 **Không hồ sơ nào bác** → **chưa test được C2** *(FACT)* |
-| Help needed | ⏳ | ⏳ | 🤖 0 *(FACT, mô phỏng)* |
-| Tìm ra nguyên nhân & quay lại bài? | ⏳ | ⏳ | 🤖 P3: **có**, đi trọn luồng không vướng *(FACT)* |
+| First action · **H1** | ⏳ | ⏳ | 🤖 Không phải chọn gì → **không có hesitation** *(FACT, mô phỏng)* |
+| Hesitation · **H2** | ⏳ | ⏳ | 🤖 **0** *(FACT, mô phỏng)* |
+| Evidence read / ignored · **H3** | ⏳ | ⏳ | 🤖 Cả 3 hồ sơ **không mở nhật ký** → không kiểm chứng lời AI *(FACT)* |
+| Correction / recovery · **H4** | ⏳ | ⏳ | 🤖 **Không hồ sơ nào bác** → **chưa test được C2** *(FACT)* |
+| Help needed · **H5** | ⏳ | ⏳ | 🤖 0 *(FACT, mô phỏng)* |
+| Privacy reaction · **H6** | ⚠️ *option không có cơ chế quan sát* | ⚠️ *option không có cơ chế quan sát* | ⏳ **cần người thật — đây là câu hỏi trung tâm của bài** |
+| Tìm ra nguyên nhân & quay lại bài? · **H7** | ⏳ | ⏳ | 🤖 P3: **có**, đi trọn luồng không vướng *(FACT)* |
 
 > 🤖 = dữ liệu mô phỏng bằng máy · ⏳ = chưa có dữ liệu người thật · *(FACT)* = đo được, chạy lại được
+>
+> ⚠️ **Ô H6 của A và B để trống là đúng** — hai option đó không thu thập hành vi, nên không có gì để quan sát. Đó là **giới hạn của option**, không phải người dùng không quan tâm tới quyền riêng tư. Đừng đọc ô này thành "C thắng về quyền riêng tư" — không có dữ liệu nào cho kết luận đó.
 >
 > ⚠️ **Giới hạn của mục này:** mô phỏng chứng minh *interaction không gãy*, **không** chứng minh *một người thật sẽ chịu được việc AI nhìn thấy mình thử sai*. Ba câu hỏi trung tâm của C — có **bấm** chỉ báo không, có thấy **bị theo dõi** không, phản ứng gì khi AI nói sai — **vẫn chưa có câu trả lời nào**.
 

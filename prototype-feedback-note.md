@@ -5,7 +5,74 @@
 
 ---
 
-## 0. Phiên này
+## 0. Shared Test Kit — bộ dùng chung cho cả A/B/C và cả ba phiên
+
+> **Vì sao phần này phải giống nhau tuyệt đối:** nếu ba người được dẫn dắt bằng ba câu khác nhau, thì khi so sánh ta sẽ không biết khác biệt đến từ **option** hay từ **cách dẫn**. Bản chuẩn nằm ở đây, cả ba thành viên đọc từ đây.
+
+### 0.1 Context Question — câu dẫn bối cảnh (đọc nguyên văn)
+
+> "Em đang học bài **Xây dựng RAG chatbot — Bài 4: Hybrid Retrieval** theo nhịp của em. Video bài giảng đang dừng ở khoảng điểm 04:20, phần em đang xem lại. Trên màn hình có sẵn một trợ lý hỗ trợ học tập — em cứ coi nó như một công cụ bình thường, dùng khi nào thấy cần. Nhiệm vụ của em là hiểu chỗ em đang kẹt. Em cứ làm như đang học thật; tôi sẽ ngồi đây quan sát, và **không trả lời gì** trừ khi em hỏi tôi có cần hướng dẫn gì không."
+
+**Câu này cố ý *không* nói:**
+- Không nói AI "sẽ tìm ra nguyên nhân" → thành lời hứa không thực hiện.
+- Không nói AI đang *theo dõi* → đó là thứ ta muốn **quan sát** xem tester có phát hiện không, nói trước là mất dữ liệu.
+- Không nói *"mình hay bị kẹt ở chỗ kết hợp"* → đó là kết luận của nhóm, ghi trước là dẫn dắt.
+
+### 0.2 Outcome Task — nhiệm vụ hướng đích (đọc nguyên văn, giống nhau cho A, B và C)
+
+> "Bạn hiểu semantic search và BM25 riêng lẻ, nhưng không hiểu **tại sao phải kết hợp** hai cách này. Hãy tìm ra lý do đó."
+
+Câu này **trùng khớp với `TaskBanner` trong prototype** → người ngoài nhóm đọc task trên màn hình là đúng ý facilitator đã đọc, không phải nghe thêm lời miệng.
+
+### 0.3 Bảy hành vi quan sát mục tiêu
+
+Đây là bảy ô phải điền ở §2–§4. Mỗi ô ghi **hành vi quan sát được**, kèm nguyên văn nếu tester nói. Không ghi *"thích / không thích"*.
+
+| # | Hành vi cần quan sát | Vì sao quan trọng | Cổng / luật liên quan |
+|---|---|---|:---:|
+| **H1** | **First action** — làm gì ngay khi màn hình mở ra? Bấm gì trước, hay đứng yên? | Phân biệt option nào khiến người dùng phải tự khởi động, option nào thì không | Cổng 2, luật 3 |
+| **H2** | **Hesitation** — đứng yên bao lâu trước hành động đầu tiên? Có quét mắt, có lăn chuột không? | Khoảng im lặng đầu tiên là chỉ báo trực tiếp cho việc người dùng có hiểu mình phải làm gì không | Cổng 4 |
+| **H3** | **Evidence read / ignored** — có đọc phần dấu hiệu / tóm tắt evidence không? Có cuộn tới cuộn lại không? | Cổng 3 — người dùng có cơ hội kiểm chứng lời AI hay không | Cổng 3, luật 6 |
+| **H4** | **Correction / recovery** — khi AI nói sai hoặc nghi sai: có phát hiện không, dùng nút *"Không phải"* / nút quay lại không, hay bỏ qua? | Đây là **hành vi khó đo nhất** và cũng là chỗ dễ đo sai nhất | Cổng 3, C2/C3 |
+| **H5** | **Help needed** — hỏi facilitator mấy lần? Hỏi gì? Có cần bấm hộ không? | Nếu số câu hỏi cao → Cổng 4 **không đạt** | Cổng 4 |
+| **H6** | **Privacy reaction** — có phát hiện mình đang bị quan sát / dữ liệu đang lưu không? Phản ứng thế nào? Có bấm nút tắt theo dõi / xoá nhật ký không? | **Giả định lớn nhất của Option C** chưa note nào Day 17 ủng hộ. Đây là câu hỏi trung tâm của bài | Cổng 3, Still Unproven #1 |
+| **H7** | **Tìm ra nguyên nhân & quay lại bài?** — có tự nói ra lý do bằng lời mình không, có quay lại đúng chỗ đang học để tiếp tục không? | Nhiệm vụ hướng đích có đạt không, và đạt *nhờ AI* hay *nhờ tự mình* | Cổng 5, luật 6 |
+
+> **H6 là ô mà không option nào khác có.** A và B chỉ hỏi người dùng, C thu thập hành vi. Vì vậy ô H6 của A/B ghi *"không có cơ chế quan sát trong option này"* — **không phải** 0 điểm của người dùng, mà là giới hạn của chính option. Ghi vậy để không so sánh nhầm.
+
+### 0.4 Bảy câu hỏi cấm — facilitator không được hỏi
+
+| # | ❌ Không được hỏi | Vì sao cấm | ✅ Hỏi lại thế nào |
+|---|---|---|---|
+| **Q1** | *"Bạn thích option này không?"* | Câu cả nể, trả lời luôn là có, đo được **một con số phiếu** chứ không phải hành vi | *"Bạn vừa làm gì? Kể lại từ lúc mở màn hình."* |
+| **Q2** | *"Bạn thấy dễ dùng không?"* | Đo đánh giá sản phẩm của người nộp, không phải hành vi người dùng | *"Chỗ nào bạn phải dừng lại để tìm?"* |
+| **Q3** | *"Bạn nghĩ sao về câu trả lời AI vừa đưa?"* | Hỏi chất lượng AI khi người dùng **chưa tự kiểm chứng** → câu trả lời là phỏng vấn ý kiến, không phải hành vi | *"Bạn làm gì để biết điều đó có đúng không?"* |
+| **Q4** | *"Bạn có hiểu hybrid retrieval / RRF không?"* | Dẫn thẳng tới kết luận của nhóm về barrier | *(im lặng)* |
+| **Q5** | *"Bạn có muốn tôi gợi ý không?"* | Phá luật im lặng; nếu tester đồng ý thì ta **tạo ra** dữ liệu không tồn tại | *"Bạn cần gì để đi tiếp?"* → rồi **ghi nhận việc họ phải hỏi**, không trả lời |
+| **Q6** | *"Bạn nghĩ vấn đề nằm ở slide nào?"* | Câu hỏi mơ hồ → tester đoán; ta mất mốc thời gian thật | *"Bạn đã mở slide nào, bao nhiêu lần, trong khoảng bao lâu?"* |
+| **Q7** | *"Nếu là bạn, bạn sẽ làm gì tiếp theo?"* | Hỏi **ý định tương lai** — hành vi chưa xảy ra. Suy đoán không phải quan sát | *"Tiếp theo bạn bấm gì?"* → rồi để họ bấm |
+
+**Ba câu nữa cũng không được nói** (đã có ở §1.4, nhắc lại vì đây là chỗ dễ phạm nhất):
+- ❌ *"Hãy qua slide 13 xem thử"* → hướng dẫn, đúng thứ mà outcome task đang chạm tới.
+- ❌ *"AI sẽ tìm ra nguyên nhân cho bạn"* → lời hứa không thực hiện.
+- ❌ *"AI đang quan sát thao tác của bạn"* (trước khi prototype tự nói) → mất dữ liệu ở H6.
+
+### 0.5 Mở và kết phiên
+
+| Mốc | Việc facilitator làm |
+|---|:---:|
+| **Trước phiên** | Bấm *"Bắt đầu lại"* một lần để chắc chắn đã về đúng context (về 04:20, slide 12) |
+| **Mở phiên** | Đọc nguyên văn §0.1 rồi §0.2. Dừng lại. **Không giải thích giao diện** |
+| **Trong phiên** | Im. Ghi âm lặng hoặc ghi tay. Chỉ ghi, không nhắc |
+| **Khi tester hỏi "bấm cái nào"** | **Ghi nguyên văn câu hỏi vào §3 rồi im.** Việc đó là dữ liệu, không phải sự cố cần xử lý |
+| **Kết phiên** | Hỏi đúng ba câu, theo thứ tự, không thêm câu nào: ① *"Bạn đã làm gì ở màn hình này?"* ② *"Có chỗ nào bạn phải dừng lại tìm không?"* ③ *"Nếu được dùng tiếp, bạn sẽ làm gì trước?"* → rồi hỏi **lựa chọn & đánh đổi** (mục cuối §4.1) |
+| **Sau phiên** | Ghi **mã commit** của bản prototype đang chạy vào §0.6 |
+
+**Về lựa chọn & đánh đổi (câu cuối):** hỏi *"Ba cái này khác nhau ở chỗ nào? Cái nào bạn sẽ dùng tiếp, và cái gì bạn phải đánh đổi?"* — đây là câu hỏi **hợp lệ** vì nó hỏi về **hành vi và lựa chọn đã diễn ra**, không hỏi cảm xúc về sản phẩm. Nhưng phải hỏi **sau khi** tester đã trải nghiệm đủ ba, không hỏi giữa chừng.
+
+---
+
+## 0.6 Phiên này
 
 | Mục | Nội dung |
 |---|---|
@@ -81,14 +148,14 @@ Bốn trạng thái này quyết định phần lớn những gì sẽ quan sát
 | Mốc | Quan sát | Ghi chú |
 |---|---|---|
 | **Chỉ báo có xuất hiện không?** | ⏳ | ⬅️ **quan trọng nhất của C** |
-| Tester có **bấm** chỉ báo không? | ⏳ | |
-| Bấm xong có **đóng sớm** không? Bao lâu? | ⏳ | |
+| Tester có **bấm** chỉ báo không? | ⏳ | ⬅️ **H1** |
+| Bấm xong có **đóng sớm** không? Bao lâu? | ⏳ | ⬅️ **H3** |
 | Câu mở của AI — tester phản ứng thế nào? | ⏳ | |
-| Tester có nói thấy **bị theo dõi** không? Nguyên văn? | ⏳ | ⬅️ **cực kỳ quan trọng** — đây là câu hỏi trung tâm của C |
-| Có phản ứng thế nào khi AI **nói sai về hành vi của mình**? | ⏳ | ⬅️ **quan trọng nhất** — đo đúng thứ không dễ đo |
-| Bỏ qua một lần thì lần sau có **tự mở lại** không? | ⏳ | ⬅️ đo C3 |
+| Tester có nói thấy **bị theo dõi** không? Nguyên văn? | ⏳ | ⬅️ **H6** — câu hỏi trung tâm của C |
+| Có phản ứng thế nào khi AI **nói sai về hành vi của mình**? | ⏳ | ⬅️ **H4** — đo đúng thứ không dễ đo |
+| Bỏ qua một lần thì lần sau có **tự mở lại** không? | ⏳ | ⬅️ **H4**, đo C3 |
 | Có tự đi tìm nguồn ngoài (Google, ChatGPT) không — **trước khi** tìm hay **sau**? | ⏳ | |
-| Có **tự kết luận** được không, hay phải cần AI nói thêm? | ⏳ | |
+| Có **tự kết luận** được không, hay phải cần AI nói thêm? | ⏳ | ⬅️ **H7** |
 
 **Ghi riêng ba câu hỏi then chốt của C:**
 
@@ -102,26 +169,29 @@ Bốn trạng thái này quyết định phần lớn những gì sẽ quan sát
 
 | Mốc | Quan sát | Ghi chú |
 |---|---|---|
-| **First action** — làm gì ngay khi mở? | ⏳ | |
-| Có **đứng yên** ~30 giây không biết bấm gì? | ⏳ | |
-| Có biết **bắt đầu từ nhánh nào** không? | ⏳ | |
+| **First action** — làm gì ngay khi mở? | ⏳ | ⬅️ **H1** |
+| Có **đứng yên** ~30 giây không biết bấm gì? | ⏳ | ⬅️ **H2** |
+| Có biết **bắt đầu từ nhánh nào** không? | ⏳ | ⬅️ **H2** |
 | Có tự tua lại video tìm không? *(không nhắc cho)* | ⏳ | |
-| Chạy hết cây mà **vẫn không ra nguyên nhân**? | ⏳ | |
+| Chạy hết cây mà **vẫn không ra nguyên nhân**? | ⏳ | ⬅️ **H7** |
 | Sau 2 nhánh chưa ra → có **tự bỏ cuộc**? | ⏳ | |
-| Evidence (dấu hiệu cần tìm) — **đọc hay bỏ qua**? | ⏳ | |
-| Có dùng nút **"không biết chọn cái nào"**? | ⏳ | |
+| Evidence (dấu hiệu cần tìm) — **đọc hay bỏ qua**? | ⏳ | ⬅️ **H3** |
+| Có dùng nút **"không biết chọn cái nào"**? | ⏳ | ⬅️ **H5** |
+| Có bấm **"Giải thích bước này giúp tôi"** không? Đọc xong có làm theo không? | ⏳ | ⬅️ **H3** + **H4** |
+| Đã chạy xong → có bấm **"Đến lượt bạn kết luận"** và viết ra lời mình không? | ⏳ | ⬅️ **H7** — chỗ người học phải tự nói ra lý do |
 
 ### 2.4 Option B — Đối thoại đồng chẩn đoán
 
 | Mốc | Quan sát | Ghi chú |
 |---|---|---|
-| **First action** — làm gì ngay khi mở? | ⏳ | |
+| **First action** — làm gì ngay khi mở? | ⏳ | ⬅️ **H1** |
 | Trả lời **"không biết"** ở bao nhiêu câu? | ⏳ | ⬅️ **đo chất lượng B** |
 | Có nói **"2 cái giống nhau"** không? | ⏳ | |
-| Có **tự kiểm trước khi nghe AI** không? | ⏳ | |
-| Đọc **tóm tắt evidence** hay bỏ qua? | ⏳ | |
-| Có **sửa câu trả lời** / yêu cầu giả thuyết khác? | ⏳ | |
-| Đọc xong **vẫn chưa ra nguyên nhân** → phản ứng? | ⏳ | |
+| Có **tự kiểm trước khi nghe AI** không? | ⏳ | ⬅️ **H3** |
+| Đọc **tóm tắt evidence** hay bỏ qua? | ⏳ | ⬅️ **H3** |
+| Có **sửa câu trả lời** / yêu cầu giả thuyết khác? | ⏳ | ⬅️ **H4** |
+| Đọc xong **vẫn chưa ra nguyên nhân** → phản ứng? | ⏳ | ⬅️ **H7** |
+| Ở màn hình *"Đến lượt bạn kết luận"* — có bấm không, có viết ra lời mình không? | ⏳ | ⬅️ **H7** | |
 
 ---
 
@@ -157,12 +227,15 @@ Bốn trạng thái này quyết định phần lớn những gì sẽ quan sát
 
 | Quan sát | A | B | C |
 |---|---|---|---|
-| First action | ⏳ | ⏳ | ⏳ |
-| Hesitation | ⏳ | ⏳ | ⏳ |
-| Evidence read / ignored | ⏳ | ⏳ | ⏳ |
-| Correction / recovery | ⏳ | ⏳ | ⏳ |
-| Help needed | ⏳ | ⏳ | ⏳ |
-| Tìm ra nguyên nhân & quay lại bài? | ⏳ | ⏳ | ⏳ |
+| First action · **H1** | ⏳ | ⏳ | ⏳ |
+| Hesitation · **H2** | ⏳ | ⏳ | ⏳ |
+| Evidence read / ignored · **H3** | ⏳ | ⏳ | ⏳ |
+| Correction / recovery · **H4** | ⏳ | ⏳ | ⏳ |
+| Help needed · **H5** | ⏳ | ⏳ | ⏳ |
+| Privacy reaction · **H6** | ⚠️ *không có cơ chế quan sát trong option này* | ⚠️ *không có cơ chế quan sát trong option này* | ⏳ |
+| Tìm ra nguyên nhân & quay lại bài? · **H7** | ⏳ | ⏳ | ⏳ |
+
+> ⚠️ **Đừng so sánh ô H6 của A/B với C.** A và B **không có cơ chế quan sát**, nên ô trống đó là **giới hạn của option**, không phải người dùng không quan tâm. Ghi vậy để bảng không tự dối mình.
 
 **Option tester chọn và trade-off (lời tester):**
 

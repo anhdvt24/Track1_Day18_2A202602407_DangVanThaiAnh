@@ -16,7 +16,7 @@ Mở `prototype/index.html`, rồi chọn option bằng tham số trong đườn
 | Mục tiêu | Đường dẫn |
 |---|---|
 | **Option A** — Bản đồ tự kiểm tra | `prototype/index.html?o=A` |
-| **Option B** — Đối thoại đồng chẩn đoán | https://trungdam1305.github.io/Track1_Day19_2A202602525_DamQuangTrung/prototype/ |
+| **Option B** — Đối thoại đồng chẩn đoán | `prototype/index.html?o=B` |
 | **Option C** — Agent theo dõi, rồi mở hội thoại | `prototype/index.html?o=C` |
 
 > Không có tham số thì mặc định là **Option C**.
@@ -38,12 +38,13 @@ Rồi mở `http://localhost:8000/index.html?o=A` (tương ứng `?o=B`, `?o=C`)
 
 | Option | Người build | File | Link | Trạng thái |
 |---|---|---|---|:---:|
-| **A** — Bản đồ tự kiểm tra | Đàm Quang Trung | `prototype/options/A/self-check.js` | `index.html?o=A` | ⏳ **chưa build** |
-| **B** — Đối thoại đồng chẩn đoạn | Nguyễn Thị Bảo Trang | `prototype/options/B/chat-diagnose.js` | `index.html?o=B` | ⏳ **chưa build** |
+| **A** — Bản đồ tự kiểm tra | Đàm Quang Trung | `prototype/options/A/self-check.js` | `index.html?o=A` | ✅ **sẵn sàng** |
+| **B** — Đối thoại đồng chẩn đoán | Nguyễn Thị Bảo Trang | `prototype/options/B/chat-diagnose.js` | `index.html?o=B` | ✅ **sẵn sàng** |
 | **C** — Agent theo dõi | **Đặng Văn Thái Anh** | `prototype/options/C/agent-nudge.js` | `index.html?o=C` | ✅ **sẵn sàng** |
 
-> ⚠️ **Hiện tại chỉ có Option C chạy được.** `index.html` đã trỏ sẵn tới `options/A/self-check.js` và `options/B/chat-diagnose.js`, nhưng hai file đó **chưa tồn tại** — mở `?o=A` hoặc `?o=B` lúc này sẽ ra màn hình trắng phần bên phải.
-> **Hệ quả cho việc test:** phiên test của tôi (**T3, thứ tự C → A → B**) chỉ chạy được phần **C**. Hai phần A và B **cần build xong mới test được** — xem [`prototype-feedback-note.md`](prototype-feedback-note.md).
+> ✅ **Cả ba option đều đã build và tự kiểm** (61/61 phép kiểm pass bằng trình duyệt thật — xem `README.md` §5.2). Ba dòng `?o=A|B|C` chạy được ngay bằng file local.
+>
+> ✅ **Đã deploy, có link công khai** — xem bảng §4. Cổng 4 đã đóng.
 
 ## 2.1 Cấu trúc thư mục
 
@@ -54,8 +55,12 @@ prototype/
 │   ├── context.js                  ← context chung + cơ chế phát sự kiện
 │   └── styles.css                  ← bộ component chung
 └── options/
-    ├── A/                          ⏳ chưa có
-    ├── B/                          ⏳ chưa có
+    ├── A/
+    │   ├── self-check.js            ← critical interaction của A
+    │   └── ANNOTATION.md           ← hướng dẫn facilitation, KHÔNG cho tester xem
+    ├── B/
+    │   ├── chat-diagnose.js         ← critical interaction của B
+    │   └── ANNOTATION.md           ← hướng dẫn facilitation, KHÔNG cho tester xem
     └── C/
         ├── agent-nudge.js          ← critical interaction của C
         └── ANNOTATION.md           ← hướng dẫn facilitation, KHÔNG cho tester xem
@@ -85,13 +90,16 @@ prototype/
 
 | Mục | Link |
 |---|---|
-| **Prototype (GitHub Pages)** | ⏳ TODO — ghi link sau khi deploy |
-| **Board chung của nhóm** | ⏳ TODO — ghi link sau khi chốt |
-| **C** (dùng ngay nếu không deploy) | `index.html?o=C` |
-| **A** (dùng ngay nếu không deploy) | `index.html?o=A` |
-| **B** (dùng ngay nếu không deploy) | `index.html?o=B` |
+| **Trang prototype** (mở được cả ba) | https://anhdvt24.github.io/Track1_Day18_2A202602407_DangVanThaiAnh/prototype/index.html |
+| **Option A** — Bản đồ tự kiểm tra | https://anhdvt24.github.io/Track1_Day18_2A202602407_DangVanThaiAnh/prototype/index.html?o=A |
+| **Option B** — Đối thoại đồng chẩn đoán | https://anhdvt24.github.io/Track1_Day18_2A202602407_DangVanThaiAnh/prototype/index.html?o=B |
+| **Option C** — Agent theo dõi | https://anhdvt24.github.io/Track1_Day18_2A202602407_DangVanThaiAnh/prototype/index.html?o=C |
 
-> **Cả ba đều đã build và tự kiểm** (48/48 phép kiểm pass bằng trình duyệt thật). Ba dòng trên chạy được ngay bằng file local — nhưng Cổng 4 yêu cầu *"người ngoài tự mở **link**"*, nên vẫn cần deploy để có địa chỉ công khai.
+> ✅ **Đã deploy GitHub Pages, public, quyền xem công khai** — giảng viên và trợ giảng mở được bằng trình duyệt, **không cần cài gì**. Ba option dùng **chung một trang**, phân biệt bằng tham số `?o=A|B|C` → không phải deploy ba bản riêng.
+>
+> **Ba option đều đã build và tự kiểm** (61/61 phép kiểm pass bằng trình duyệt thật). Link trên phục vụ từ nhánh `main` — nên **sau mỗi lần push, đợi 1–2 phút** rồi mới gửi cho tester, tránh lúc Pages đang build lại.
+>
+> **Nếu link chết:** tải file `prototype/` về mở bằng `index.html?o=A` cũng chạy được — không phụ thuộc mạng.
 
 ---
 

@@ -21,7 +21,17 @@
 
 ### Hypothesis Problem đã chốt
 
-> **Khi** học viên tự học trực tuyến theo nhịp cá nhân — thường để áp dụng ngay vào một việc thật — **và** gặp một tình huống mà kết quả trên dữ liệu thật khác với hướng dẫn, **họ gặp khó khăn trong việc xác định điểm vướng và dùng đúng những gì mình đã biết**, **vì** họ không biết mình **đã biết gì** hoặc **đang thiếu gì** có liên quan tới **đúng triệu chứng này**, và các nguồn ngoài đều được viết cho người chưa từng gặp tình huống đó trên dữ liệu thật của họ — **dẫn đến** lặp lại thao tác, dò nhiều nguồn không khớp, mất thời gian và gián đoạn luồng học; **đôi khi họ bỏ hẳn phần học tiếp theo dù vẫn hoàn thành được công việc trước mắt**.
+> **Khi** học viên tự học trực tuyến theo nhịp cá nhân — thường để áp dụng ngay vào một việc thật — **và** gặp một tình huống mà bài học khẳng định một điều, nhưng **không đưa ví dụ** để người học tự đối chiếu được, **họ gặp khó khăn trong việc xác định điểm vướng và dùng đúng những gì mình đã biết**, **vì** họ không biết mình **đã biết gì** hoặc **đang thiếu gì** có liên quan tới **đúng triệu chứng này**, và các nguồn ngoài đều được viết cho người chưa từng gặp đúng tình huống đó trong công việc thật của họ — **dẫn đến** lặp lại thao tác, dò nhiều nguồn không khớp, mất thời gian và gián đoạn luồng học; **đôi khi họ bỏ hẳn phần học tiếp theo dù vẫn hoàn thành được công việc trước mắt**.
+
+> ⚠️ **Vế Situation đã sửa một lần — và đây là lý do.**
+>
+> `NHOM/Day18-chot-chung.md` §1.8 (bản chốt chung) viết Situation là *"gặp một tình huống mà **kết quả trên dữ liệu thật khác với hướng dẫn**"*. Đó là câu chữ của **scenario Excel** (PN3: PivotTable hiện Count thay vì Sum).
+>
+> Bài nộp này dùng **RAG**, nên tôi đổi vế đó. Không phải để cho khớp với prototype, mà vì:
+> 1. **Không note nào ủng hộ.** PN1 — note duy nhất có file nguồn cho bản RAG — nói về **"không hiểu hybrid retrieval"** và **"thoát kẹt nhờ một ví dụ thực tế"**. Không note nào nói kết quả lệch hướng dẫn.
+> 2. **Không khớp prototype.** Trong prototype không có dữ liệu thật, nên không có kết quả nào "khác hướng dẫn". Người học kẹt ở chỗ slide 12 khẳng định *"mỗi phương pháp có điểm mạnh riêng nên kết hợp"* mà **không kèm ví dụ**. Đó là *bài giảng thiếu ví dụ*, khác hẳn *kết quả lệch hướng dẫn*.
+>
+> Giữ nguyên vế cũ thì ba option A/B/C sẽ không giải đúng bài toán mà Hypothesis đặt ra → **vi phạm luật 1**. Ba thành tố còn lại (user · barrier · consequence) giữ nguyên vì vẫn đúng với cả hai note.
 
 **Ba ẩn số chưa biết mang sang thiết kế:**
 
@@ -104,6 +114,8 @@ Người học giữ phần lớn quyền  ◄───────────�
 | **User hiểu capability / limit bằng gì?** | Cây hiện nguyên văn các bước — user thấy hết đường đi trước khi đi | Tóm tắt nêu rõ **AI dựa vào câu trả lời nào**; *"không biết"* được chấp nhận nên user không bị dồn vào chân tười | Chỉ báo ghi rõ **quan sát được gì, trong bao lâu** — không kèm nguyên nhân |
 | **Evidence / uncertainty** | Mỗi phép kiểm tra ghi **điều kiện và kết quả mong đợi** trước khi chạy → user tự đối chiếu được | Mỗi giả thuyết gắn **dấu hiệu hỗ trợ / chống lại**; bác 2 lần → AI nói không chắc | Câu mở phải có **số đếm + mốc thời gian thật**. Nếu chưa đủ mẫu → **im**, không nói gì |
 | **Kiểm soát & phục hồi** | Bỏ chọn ô, quay lại nhánh trước; mở lại bản đồ không mất phần đã đọc; thoát về bài ở mọi trạng thái | Sửa câu trả lời bất cứ lúc nào; *"Cả hai đều không đúng"* → AI dừng, hỏi 1 câu mở; thoát về bài | Nút **"Không phải, tôi không làm vậy"** ở **mọi** màn hình sau chỉ báo → AI dừng và **xoá toàn bộ suy đoán**; bỏ qua một lần → lần sau im, **nhưng** có nút tự mở lại; thoát về bài |
+| **Chỗ người học tự nói ra lời mình** *(R1)* | Nút **"Đến lượt bạn kết luận"** xuất hiện ở bản đồ **sau khi đã chạy ít nhất một nhánh** → màn hình *"Viết bằng lời của bạn: vì sao phải kết hợp?"* AI **không** gợi ý trong ô này | Cùng một màn hình kết luận, cùng một câu hỏi — để so sánh công bằng | Sau khi kết luận xong, hệ thống **chỉ mời tiếp tục quan sát**, không hỏi thêm |
+| **AI có được giải thích thay không?** | Nút **"Giải thích bước này giúp tôi"** ở mỗi phép kiểm tra, **chỉ dùng được một lần** cho cả phiên, giải thích **đúng một bước đang làm** chứ không phải nguyên nhân. Hết lượt → nút biến mất, không mở lại được | Không có bước nào để giải thích — vì ở B, thông tin đến từ **lời kể**, không phải từ một nhánh cụ thể | Câu mở **không** kèm lời giải thích nào — chỉ nói đã quan sát gì, trong bao lâu |
 | **Nếu AI sai, user mất gì?** | Ôn nhầm phần; user **tự kiểm được** vì đã tự đi từng bước | Ôn nhầm phần; phải dựa vào dấu hiệu AI đưa để bác | Mất **lợi thế tự kiểm** — vì đã bấm chỉ báo thay vì tự tìm. Đây là rủi ro lớn nhất của C |
 
 ### Bốn trụ cột — bắt buộc cho Cổng 3
@@ -114,12 +126,13 @@ Người học giữ phần lớn quyền  ◄───────────�
 | **Agency** — ai quyết | **User** giữ 100% quyết định | **Chia đôi** — user quyết giả thuyết, AI xếp hạng | **AI phát hiện**, nhưng **user quyết** có mở hội thoại hay không |
 | **Evidence** — dựa vào cái gì để tin | Điều kiện + kết quả mong đợi của từng phép kiểm tra | Dấu hiệu hỗ trợ / chống lại từng giả thuyết | **Số đếm + mốc thời gian thật** trong nhật ký phiên |
 | **Recovery** — AI sai thì làm gì | Tự chạy lại từ nhánh khác, không mất tiến độ | Bác giả thuyết, AI dừng và hỏi lại | Nút **"Không phải"** → xoá suy đoán · bỏ qua → im · **luôn** có nút *"Xem lại thao tác của tôi"* để tự mở lại · luôn có nút "Về bài học" |
+| **R1 — ai viết kết luận** | ⬇️ **Cả ba đều để người học tự viết** ở một màn hình kết luận, cùng câu hỏi, cùng chỗ lưu (chỉ trong phiên) | ⬇️ | ⬇️ |
 
 ### Quy tắc chung áp cho cả ba option (R1–R6)
 
 | # | Quy tắc |
 |---|---|
-| **R1** | Kết luận bằng **lời người học** — AI không kết luận hộ |
+| **R1** | Kết luận bằng **lời người học** — AI không kết luận hộ. Cả ba option đều có một màn hình kết luận, cùng câu hỏi, cùng chỗ lưu trong phiên |
 | **R2** | AI **không quyết bước nào** sau khi người học bác |
 | **R3** | Lối thoát "Về bài học" **luôn hiện** ở mọi trạng thái |
 | **R4** | Không chắc thì **nói ra** |

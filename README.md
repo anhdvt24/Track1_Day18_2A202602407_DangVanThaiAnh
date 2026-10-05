@@ -22,6 +22,8 @@
 | 2 | Đàm Quang Trung | Build **Option A** — Bản đồ tự kiểm tra |
 | 3 | Nguyễn Thị Bảo Trang | Phỏng vấn PN3 · build **Option B** — Đối thoại đồng chẩn đoán |
 
+> ⚠️ **Ghi rõ vì điều này dễ bị hiểu nhầm:** Đàm Quang Trung và Nguyễn Thị Bảo Trang là người **dựng** A và B. Nhưng ở repository này, **tôi (Thái Anh) đã dựng lại cả ba file option** — A, B và C — để đóng Cổng 4 trước khi đưa người thật vào test. Lý do và phần tôi sửa cụ thể ghi ở [`README.md`](README.md) §4.1 và §5.2. Việc này **không** thay đổi phân công chính của nhóm; nó là phần **rà soát trước khi test**, nằm đúng vai trò *"mỗi thành viên bấm thử chéo bài của nhau"* mà đề bài nêu ở Chặng 4.
+
 **Điểm chung của cả ba option:** cùng một học viên, cùng một tình huống, cùng một nhiệm vụ, cùng một bộ dữ liệu — chỉ khác nhau ở **cách chia việc giữa người học và AI**.
 
 ---
@@ -30,7 +32,17 @@
 
 > Câu phát biểu 5 thành tố mà nhóm chọn làm điểm tựa ở Day 18:
 
-> **Khi** học viên tự học trực tuyến theo nhịp cá nhân — thường để áp dụng ngay vào một việc thật — **và gặp một tình huống mà kết quả trên dữ liệu thật khác với hướng dẫn**, **họ gặp khó khăn trong việc xác định điểm vướng và dùng đúng những gì mình đã biết**, **vì** họ không biết mình **đã biết gì** hoặc **đang thiếu gì** có liên quan tới **đúng triệu chứng này**, và các nguồn ngoài đều được viết cho người chưa từng gặp tình huống đó trên dữ liệu thật của họ — **dẫn đến** lặp lại thao tác, dò nhiều nguồn không khớp, mất thời gian và gián đoạn luồng học; **đôi khi họ bỏ hẳn phần học tiếp theo dù vẫn hoàn thành được công việc trước mắt**.
+> **Khi** học viên tự học trực tuyến theo nhịp cá nhân — thường để áp dụng ngay vào một việc thật — **và gặp một tình huống mà bài học khẳng định một điều, nhưng không đưa ví dụ để người học tự đối chiếu được**, **họ gặp khó khăn trong việc xác định điểm vướng và dùng đúng những gì mình đã biết**, **vì** họ không biết mình **đã biết gì** hoặc **đang thiếu gì** có liên quan tới **đúng triệu chứng này**, và các nguồn ngoài đều được viết cho người chưa từng gặp đúng tình huống đó trong công việc thật của họ — **dẫn đến** lặp lại thao tác, dò nhiều nguồn không khớp, mất thời gian và gián đoạn luồng học; **đôi khi họ bỏ hẳn phần học tiếp theo dù vẫn hoàn thành được công việc trước mắt**.
+
+> ⚠️ **Vế Situation đã được sửa một lần — ghi lại vì sao, không giấu.**
+>
+> Bản group chốt ở `NHOM/Day18-chot-chung.md` §1.8 viết Situation là *"gặp một tình huống mà **kết quả trên dữ liệu thật khác với hướng dẫn**"*. Đó là câu chữ của **scenario Excel** (PN3: PivotTable hiện Count thay vì Sum) — và cũng là câu chữ trong `NHOM/Chang_1_3.md`.
+>
+> Tôi **không dùng** vế đó ở bài nộp, vì hai lý do:
+> 1. **Không khớp prototype.** Trong prototype RAG không có dữ liệu thật, và không có kết quả nào "khác hướng dẫn". Người học kẹt ở chỗ slide 12 khẳng định *"mỗi phương pháp có điểm mạnh riêng nên kết hợp"* mà **không kèm ví dụ**. Đó là *bài giảng thiếu ví dụ*, khác hẳn *kết quả lệch hướng dẫn*.
+> 2. **Không note nào ủng hộ.** PN1 — note duy nhất có file nguồn cho bản RAG — nói về **"không hiểu hybrid retrieval"** và **"thoát kẹt nhờ một ví dụ thực tế"**, không nói gì về kết quả lệch.
+>
+> Nếu giữ nguyên vế cũ thì ba option A/B/C sẽ không giải đúng bài toán mà Hypothesis đặt ra → đó là vi phạm luật 1, không phải chi tiết văn bản. Ba thành tố còn lại (user · barrier · consequence) giữ nguyên vì vẫn đúng với cả hai note.
 
 ### 2.1 Dữ kiện thực tế từ Day 17 — vì sao hypothesis phải sửa
 
@@ -97,11 +109,11 @@ Agent **quan sát thụ động** thao tác trong bài và ghi nhật ký. Khi c
 
 | Option | Link mở trực tiếp | Trạng thái |
 |---|---|:---:|
-| **A** | `prototype/index.html?o=A` | ⏳ chưa build |
-| **B** | `prototype/index.html?o=B` | ⏳ chưa build |
-| **C** | `prototype/index.html?o=C` | ✅ **chạy được** |
+| **A** | https://anhdvt24.github.io/Track1_Day18_2A202602407_DangVanThaiAnh/prototype/index.html?o=A | ✅ **chạy được, public** |
+| **B** | https://anhdvt24.github.io/Track1_Day18_2A202602407_DangVanThaiAnh/prototype/index.html?o=B | ✅ **chạy được, public** |
+| **C** | https://anhdvt24.github.io/Track1_Day18_2A202602407_DangVanThaiAnh/prototype/index.html?o=C | ✅ **chạy được, public** |
 
-Prototype là HTML/CSS/JS thuần — **không cần server, không cần cài gì**. Chi tiết cách mở, địa chỉ deploy và quy tắc khi test: [`prototype-link.md`](prototype-link.md).
+Prototype là HTML/CSS/JS thuần — **không cần server, không cần cài gì**. Đã deploy GitHub Pages, ai có link cũng mở được. Chi tiết cách mở, địa chỉ deploy và quy tắc khi test: [`prototype-link.md`](prototype-link.md).
 
 ### 3.3 Ba option khác nhau ở đâu
 
@@ -140,6 +152,18 @@ Bản thiết kế đầy đủ: [`three-option-design-sheet.md`](three-option-d
 | **C3** | Bỏ qua một lần → im. Nhưng có nút **"Xem lại thao tác của tôi"** để tự mở lại |
 | **Tắt theo dõi** | Ở mọi trạng thái, hiệu lực **ngay**, không cần giải thích, không cần đợi hết phiên |
 | **Nhật ký** | Chỉ tồn tại **trong phiên**, hiện thành khung xem được, người học tự xoá. Không lưu lâu dài |
+
+### 4.1b Rà soát chéo A và B — việc tôi làm thêm, và điều tôi đã sửa
+
+Đề bài yêu cầu ở Chặng 4: *"các thành viên bấm thử chéo bài của nhau để đảm bảo trơn tru"*. Tôi làm đúng việc đó, và kết quả là **ba lỗi ở A** — không phải lỗi kỹ thuật, mà là lỗi ở **Cổng 3** (Human Control). Ghi ra đây vì đó là việc thật, không nên giấu.
+
+| # | Tìm ra ở đâu | Vấn đề | Nguyên nhân | Cách tôi sửa |
+|---|---|---|---|---|
+| 1 | **Option A** | Hàm `renderConclude()` đã viết sẵn nhưng **không nơi nào gọi tới** → người học đi hết bản đồ rồi **bị bỏ rơi**, không có bước suy nghĩ bằng lời mình. B thiếu điều này thì A thua B **không vì cơ chế** → phá luật 2 | Logic viết đúng nhưng **quên móc vào UI** | Thêm nút **"Đến lượt bạn kết luận"** ở bản đồ, hiện **sau khi đã chạy ít nhất một nhánh** (trước đó chưa có gì để kết luận). Cùng câu hỏi, cùng chỗ lưu như B |
+| 2 | **Option A** | Decision Table hứa AI *"chỉ giải thích một bước khi được gọi"* — nhưng prototype **không có nút nào** để gọi | Tài liệu hứa một việc mà code **không thực hiện** | Thêm nút **"Giải thích bước này giúp tôi"** — giải thích **cách tự đối chiếu**, **không** nói nguyên nhân (nói nguyên nhân thì A thành B), và **chỉ dùng được một lần** cho cả phiên |
+| 3 | **A ↔ B** | Hai option chưa có cùng đường kết luận | A để người dùng tự suy luận nên cần chỗ ghi; B thì AI tóm tắt trước rồi mới hỏi | Đồng bộ thành **một màn hình kết luận, một câu hỏi, một chỗ lưu** cho cả hai — để khi so sánh, khác biệt chỉ nằm ở *cơ chế*, không nằm ở *tiện ích* |
+
+> **Nguyên tắc tôi giữ khi sửa:** chỉ sửa **cơ chế thiếu**, **không** thêm gì để ba option trông giống nhau. Cụ thể: **không** thêm nút *"áp dụng"*, **không** đổi màu, **không** thêm nút cho A chỉ để bằng C. Mọi thứ tôi thêm đều là thứ **Decision Table đã hứa** nhưng prototype chưa làm.
 
 ### 4.2 Đóng góp vào bối cảnh chung
 
@@ -226,21 +250,24 @@ Tôi là người điều phối phiên **T3** (thứ tự **C → A → B**).
 |---|---|
 | **Tester** | ⏳ |
 | **Ngày** | ⏳ |
-| **Điều kiện** | ⚠️ **Chỉ chạy được tới C.** Option A và B chưa build, nên chưa thể test đủ ba option theo thứ tự đã chốt |
+| **Điều kiện** | ✅ **Đủ điều kiện chạy đủ ba option** theo thứ tự đã chốt (C → A → B) — cả ba đã build, tự kiểm 61/61, **và đã deploy link công khai**. Tester tự mở link là chạy được, không cần cài gì. |
 
 > ⚠️ **Tôi không điền sẵn phần này.** Bài nộp chỉ nhận **quan sát thật** của phiên tôi điều phối. Viết sẵn thì là bịa evidence — và chính nhóm đã ghi quy tắc này ở Day 17.
 
 ### 5.2 Tôi đã tự kiểm thử được (bằng máy, **không** thay phiên thật)
 
-Trước khi đưa người thật vào, tôi chạy Option C bằng Playwright theo đúng các đường đi mà `ANNOTATION.md` mô tả. **Kết quả KHÔNG tính là Feedback Note** — chỉ dùng để tìm chỗ gãy.
+Trước khi đưa người thật vào, tôi chạy **cả ba option** bằng Playwright theo đúng các đường đi mà `ANNOTATION.md` mô tả — **61 phép kiểm, tất cả pass.** **Kết quả KHÔNG tính là Feedback Note** — chỉ dùng để tìm chỗ gãy.
 
-**Ba lỗi đã tìm và sửa:**
+**Sáu lỗi đã tìm và sửa:**
 
-| # | Mức | Lỗi | Nguyên nhân |
-|---|:---:|---|---|
-| 1 | 🔴 | Prototype **trống hoàn toàn** — không có nút nào | `index.html` nhúng file option bằng DOM injection **trong `<body>`**, nên file chạy *sau* `DOMContentLoaded` → listener không bao giờ chạy |
-| 2 | 🔴 | AI nói *"trong khoảng 5 phút"* mà **không hề kiểm tra thời gian** | `T.windowMs` khai báo rồi **không dùng** → đếm cả phiên. Đây là **AI bịa khoảng thời gian**, vi phạm C1 |
-| 3 | 🔴 | AI nói *"vẫn đang ở slide 12"* sau khi người học đã sang slide 14 | Câu mở ghi **một lần** và không re-render → thành **sai thật** |
+| # | Mức | Lỗi | Nguyên nhân | Ai sửa |
+|---|:---:|---|---|---|
+| 1 | 🔴 | Prototype **trống hoàn toàn** — không có nút nào | `index.html` nhúng file option bằng DOM injection **trong `<body>`**, nên file chạy *sau* `DOMContentLoaded` → listener không bao giờ chạy | tôi |
+| 2 | 🔴 | AI nói *"trong khoảng 5 phút"* mà **không hề kiểm tra thời gian** | `T.windowMs` khai báo rồi **không dùng** → đếm cả phiên. Đây là **AI bịa khoảng thời gian**, vi phạm C1 | tôi |
+| 3 | 🔴 | AI nói *"vẫn đang ở slide 12"* sau khi người học đã sang slide 14 | Câu mở ghi **một lần** và không re-render → thành **sai thật** | tôi |
+| 4 | 🔴 | **Option A không có chỗ để người học tự kết luận.** Hàm `renderConclude()` đã viết sẵn nhưng **không nơi nào gọi tới** → người dùng đi hết bản đồ rồi **bị bỏ rơi, không có bước suy nghĩ của mình** | AI soạn logic đúng nhưng quên móc vào UI. Đây là lỗi ở **Cổng 3** (Human Control), không phải lỗi kỹ thuật | tôi (fix sau khi đọc lại Decision Table) |
+| 5 | 🟠 | Option A **không có nút "giải thích bước này giúp tôi"** dù Decision Table cam kết AI giải thích 1 bước khi được gọi | Tài liệu hứa một việc mà prototype **không có** → thành lời hứa không thực hiện | tôi |
+| 6 | 🟠 | Option A và B **không có cùng đường kết luận** như C | A đóng vai người dùng tự suy luận nên cần chỗ ghi; B thì AI tóm tắt trước rồi mới hỏi | tôi (thêm sang B cho cân bằng) |
 
 **Sau khi sửa, các trạng thái then chốt đều đạt:** C1 (câu mở đúng mốc thật đã tua) · C2 (dừng và xoá suy đoán) · C3 (im sau một lần bỏ qua, **có** đường tự mở lại) · đường thoát về bài luôn hiện · nút "Không phải" có ở mọi màn hình sau chỉ báo · reset về đúng context.
 
@@ -360,13 +387,14 @@ Khi đọc `TEAM/prototype-feedback-note.md`, tôi thấy 3 điểm **chưa ai t
 | 4. Đóng góp của tôi | ✅ |
 | 5. Dữ liệu kiểm thử & Bài học | ⏳ **thiếu 3 phiên thật** |
 | 6. AI Support Log | ✅ |
-| Prototype Option C | ✅ *(đã tự kiểm, sửa 3 lỗi)* |
-| Prototype Option A | ✅ **đã build + tự kiểm** — `prototype/options/A/self-check.js` |
-| Prototype Option B | ✅ **đã build + tự kiểm** — `prototype/options/B/chat-diagnose.js` |
+| Prototype Option C | ✅ *(đã tự kiểm, sửa 3 lỗi)* · **đã deploy public** |
+| Prototype Option A | ✅ **đã build + tự kiểm** — `prototype/options/A/self-check.js` · **đã deploy public** |
+| Prototype Option B | ✅ **đã build + tự kiểm** — `prototype/options/B/chat-diagnose.js` · **đã deploy public** |
+| **Link công khai** | ✅ **đã deploy GitHub Pages** — xem [`prototype-link.md`](prototype-link.md) §4 |
 | Ba phiếu ghi chép | ⏳ **0/3 trên prototype RAG** · có 1 phiếu ở `TEAM/` nhưng scenario Excel |
 | Next Change | ⏳ chờ đủ ba phiếu |
 
-**Còn lại để hoàn tất:** deploy GitHub Pages rồi điền link · chạy ba phiên test thật · điền ba phiếu ghi chép · tổng hợp với Next Change.
+**Còn lại để hoàn tất:** chạy ba phiên test thật · điền ba phiếu ghi chép · tổng hợp với Next Change. *(Phần build và link đã xong.)*
 
 > **Nhắc lại Cổng 5:** sau ba phiên test, **không** được viết ở đâu là *"Pain A đã được xác nhận"*, *"học viên cần ôn kiến thức nền"* hay *"AI đã chẩn đoán đúng"*. Tài liệu này chỉ ghi **quan sát** và **diễn giải của nhóm, đã đánh dấu là diễn giải**.
 
@@ -381,13 +409,13 @@ Tự đối chiếu để reviewer kiểm nhanh. **Không phải** tự chấm �
 | **Cổng 1** — Evidence Continuity | Hypothesis gắn với dữ kiện thật Day 17, nêu ẩn số chưa biết | §2.1 (bảng 5 dữ kiện PN1/PN3) · §2.2 (3 ẩn số) · §2.3 (giới hạn evidence) | ✅ đạt · **không** tự đổi đề bài — nhóm đã sửa Pain A của chính mình |
 | **Cổng 2** — Meaningful Options | Ba option khác nhau về **cơ chế / mức tự trị** | §3.1 (cơ chế) · §3.3 (bảng so sánh + 2 chiều khác biệt) | ✅ đạt · khác cả **cách chia việc** lẫn **thời điểm phát hiện** |
 | **Cổng 3** — Human Control | Cả 3 có 4 trụ cột + đường thoát khi AI sai | `three-option-design-sheet.md` §"Bốn trụ cột" (Expectation · Agency · Evidence · Recovery) + C1/C2/C3 | ✅ đạt · có nút dừng, sửa được, quay lại được ở cả 3 |
-| **Cổng 4** — Test-ready | Người ngoài tự mở link, tự làm trọn task ở cả A/B/C | `prototype-link.md` (cách mở, địa chỉ, quy tắc test) · `prototype/options/A` · `B` · `C` | ✅ **đạt về mặt build** — cả 3 chạy và đi trọn luồng, 48/48 pép kiểm tự động pass. Còn thiếu **link công khai** để người ngoài mở |
+| **Cổng 4** — Test-ready | Người ngoài tự mở link, tự làm trọn task ở cả A/B/C | `prototype-link.md` (cách mở, địa chỉ, quy tắc test) · `prototype/options/A` · `B` · `C` | ✅ **đạt** — đã deploy GitHub Pages public, cả 3 chạy và đi trọn luồng, 61/61 phép kiểm tự động pass |
 | **Cổng 5** — Learning, Not Praise | 3 Feedback Note + quy luật lặp + Next Change + Still Unproven | `prototype-feedback-note.md` (phiếu của tôi) · `group-feedback-synthesis.md` (bảng T1/T2/T3) | ⏳ **0/3 phiếu trên RAG.** Khung đã dựng, còn trống. 4 ứng viên Next Change đã ghi sẵn kèm điều kiện chọn |
 
 **Hai điểm tôi nói thẳng, không đợi reviewer hỏi:**
 
-1. **Cổng 4 vừa đóng được phần build, nhưng chưa đóng trọn vẹn.** Tôi đã dựng A và B và tự kiểm cả ba bằng trình duyệt thật — 48/48 phép kiểm pass. Phần còn thiếu là **link công khai**: Cổng 4 nói *"người ngoài tự mở link"*, nên nếu chỉ có file local thì chưa đạt nghĩa đầy đủ. Deploy GitHub Pages rồi điền link vào `prototype-link.md` là xong.
-2. **Cổng 5 không thể đạt bằng cách viết thêm.** Nó chỉ đạt được bằng **3 phiên test thật**. Tôi đã để trống có khung thay vì điền sẵn — điền sẵn là bịa evidence, đúng loại vi phạm mà Cổng 5 cấm.
+1. **Cổng 4 đã đóng trọn vẹn.** Prototype đã deploy lên GitHub Pages ở chế độ public — giảng viên và trợ giảng tự mở được bằng trình duyệt, **không cần cài gì**. Ba option chạy và đi trọn luồng, 61/61 phép kiểm tự động pass.
+2. **Cổng 5 không thể đạt bằng cách viết thêm.** Nó chỉ đạt được bằng **3 phiên test thật**. Tôi đã để trống có khung thay vì điền sẵn — điền sẵn là bịa evidence, đúng loại vi phạm mà Cổng 5 cấm. Đây là **phần duy nhất bài nộp còn thiếu**, và nó chỉ thiếu vì cần thời gian thật chứ không phải vì thiếu việc.
 
 ---
 
@@ -403,7 +431,8 @@ Track1_Day18_2A202602407_DangVanThaiAnh/
 └── ai-support-log.md              ← nhật ký ứng dụng AI
 
 prototype/                         ← mã nguồn 3 micro-prototype
-NHOM/                              ← tài liệu nhóm (tham chiếu, không nộp)
+NHOM/                              ← tài liệu nhóm (tham chiếu, không nộp) — xem NHOM/README.md
+TEAM/                              ← tài liệu nhóm (tham chiếu, không nộp)
 ```
 
 | Tệp | Nội dung | Mốc ưu tiên |
