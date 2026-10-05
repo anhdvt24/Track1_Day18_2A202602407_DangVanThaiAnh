@@ -3,6 +3,24 @@
 > **Điền sau khi đủ một phiên test thật. CHỈ người facilitate phiên đó điền.**
 > **Không dùng AI để viết phần này.** Mọi dòng phải là thứ đã **xảy ra trong phiên**, không phải thứ mình nghĩ tester sẽ làm.
 
+### 📋 Cách chạy phiên này trong 20 phút
+
+> Toàn bộ việc cần làm đã **dựng sẵn** trong file này. Bạn chỉ cần **thay ⏳ bằng thứ đã xảy ra**.
+
+| Bước | Việc | Mất |
+|---|---|:---:|
+| **1** | Mở link tester sẽ dùng: https://anhdvt24.github.io/Track1_Day18_2A202602407_DangVanThaiAnh/prototype/index.html?o=C — bấm **"Bắt đầu lại"** một lần để chắc chắn về 04:20 / slide 12 | 1′ |
+| **2** | Mở `prototype/options/C/ANNOTATION.md` — ghi trước **điều không được nói** | 2′ |
+| **3** | Đọc nguyên văn **§0.1** (Context Question) rồi **§0.2** (Outcome Task) cho tester. Dừng lại. **Không giải thích giao diện** | 1′ |
+| **4** | Đưa link. **Im lặng quan sát.** Ghi tay hoặc ghi âm — chỉ ghi, không nhắc | 8′ |
+| **5** | Khi tester hỏi *"bấm cái nào"* → **ghi nguyên văn vào §3 rồi im** | — |
+| **6** | Hỏi đúng 3 câu ở cuối §0.5, rồi hỏi lựa chọn & đánh đổi | 3′ |
+| **7** | Điền §0.6 (tester, ngày, commit) · §2.1–§2.4 (quan sát H1–H7) · §3 (bất ngờ) · §4 | 5′ |
+
+**Ba option theo thứ tự C → A → B** — đổi `?o=C` thành `?o=A` rồi `?o=B`, **bấm "Bắt đầu lại" giữa mỗi lần** để về đúng context.
+
+> ⚡ **Cách nhanh nhất để đủ Cổng 5 với 1 người:** chạy đủ ba option với **một** tester, rồi nhờ hai đồng đội chạy nhanh T1/T2 theo đúng bộ Test Kit này (chỉ cần điền bảng H1–H7 ở §4.1 — 7 ô, mỗi ô một dòng). Ba phiếu cùng bộ câu hỏi là **so sánh được**; ba phiếu khác bộ thì không.
+
 ---
 
 ## 0. Shared Test Kit — bộ dùng chung cho cả A/B/C và cả ba phiên
