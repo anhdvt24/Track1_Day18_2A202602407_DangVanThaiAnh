@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prototype học trực tuyến — Common Context</title>
+<link rel="stylesheet" href="common/styles.css">
+</head>
+<body>
+<div class="app">
+
+  <div class="topbar">
+    <span class="brand">Khóa học: Xây dựng RAG chatbot · Bài 4 — Hybrid Retrieval</span>
+    <span class="opt" id="optBadge">— option —</span>
+  </div>
+
+  <!-- TASK — dùng chung, copy nguyên văn cho cả ba. KHÔNG tự viết lại. -->
+  <div class="task">
+    <div class="q">Bạn hiểu semantic search và BM25 riêng lẻ, nhưng không hiểu <b>tại sao phải kết hợp</b> hai cách này. Hãy tìm ra lý do đó.</div>
+    <div class="dl">Đang xây dựng chatbot hỏi đáp trên bộ tài liệu của bạn</div>
+  </div>
+
+  <div class="cols">
+
+    <!-- ------------------------------------------------- LEFT: common -->
+    <div>
+
+      <!-- Video bài học -->
+      <div class="card">
+        <h2>Video bài học</h2>
+        <div class="video">
+          <div class="screen" id="screen">
+            <div class="still">
+              <div class="big">▶</div>
+              <div class="cap">Đang dừng ở 04:20 — Slide 12: "Kết hợp kết quả hai phương pháp"</div>
+            </div>
+            <span class="live" id="liveLabel"></span>
+          </div>
+          <div class="bar">
+            <button class="btn sm" id="playBtn" aria-label="Phát">▶</button>
+            <div class="track" id="track">
+              <div class="fill" id="fill"></div>
+              <div class="head" id="head"></div>
+            </div>
+            <div class="time" id="timeLbl">04:20 / 08:00</div>
+          </div>
+          <div class="marks" id="marks"></div>
+        </div>
+      </div>
+
+      <!-- Slide deck -->
+      <div class="card">
+        <h2>Slide bài học</h2>
+        <div class="deck">
+          <div class="bar">
+            <span class="idx" id="slideIdx">Slide 12 / 24</span>
+            <span class="spacer"></span>
+            <button class="btn sm" id="prevSlide" type="button">◀ Trước</button>
+            <button class="btn sm" id="nextSlide" type="button">Sau ▶</button>
+            <button class="btn sm" id="backToSlide" type="button">Về slide 12</button>
+          </div>
+          <div class="body" id="slideBody"></div>
+        </div>
+      </div>
+
+      <!-- Đoạn code trong bài -->
+      <div class="card">
+        <h2>Đoạn code trong bài</h2>
+        <div class="code">
+          <div class="head">rag/retrieval.py</div>
+<pre><span class="c"># hợp nhất kết quả từ semantic search và BM25</span>
+<span class="def">def</span> <span class="k">hybrid_search</span>(query, k=<span class="n">10</span>):
+    dense  = semantic_search(query, k)      <span class="c"># theo nghĩa</span>
+    sparse = bm25_search(query, k)          <span class="c"># theo từ khoá</span>
+<span class="hl">    <span class="k">return</span> reciprocal_rank_fusion(dense, sparse, k)</span></pre>
+        </div>
+        <div class="small muted" style="margin-top:8px">
+          Chạy được thì copy code này. Nhưng bạn cần hiểu logic phía sau.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ---------------------------- RIGHT: option lắp critical interaction -->
+    <div><div id="optSlot"></div></div>
+
+  </div>
+</div>
+
+<!-- Dock: luôn hiện, không cần cuộn (R3) -->
+<div class="dock">
+  <button class="btn" id="backBtn" type="button">Về bài học</button>
+  <button class="btn ghost" id="resetBtn" type="button">Bắt đầu lại</button>
+  <span class="spacer"></span>
+  <span class="hint" id="dockHint"></span>
+</div>
+
+<script src="common/context.js"></script>
+
+<!-- Bootstrap: chọn option theo ?o=A|B|C. Mỗi option là MỘT file JS riêng,
+     nên 70% chung được đảm bảo bằng cấu trúc chứ không phải bằng copy 3 bản.
+     Địa chỉ tester dùng:  index.html?o=A   index.html?o=B   index.html?o=C -->
+<script>
+  (function () {
+    var o = (location.search.match(/[?&]o=([ABC])/i) || [])[1];
+    if (!o) o = 'C';
+    var s = document.createElement('script');
+    s.src = 'options/' + o + '/' + {
+      A: 'self-check.js', B: 'chat-diagnose.js', C: 'agent-nudge.js'
+    }[o];
+    document.body.appendChild(s);
+  })();
+</script>
+</body>
+</html>
